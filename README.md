@@ -1,66 +1,66 @@
-Json,Xml‚ğw’è‚·‚é‚Æ©“®‚ÅRDB‚Ìƒe[ƒuƒ‹AƒJƒ‰ƒ€‚ğì¬‚µInsert‚ğs‚¢‚Ü‚·B
-DynamicInsert‚Å‚ÍAInsert‚·‚é‚½‚Ñ‚É‘«‚è‚È‚¢ƒJƒ‰ƒ€‚ª©“®ì¬‚³‚ê‚Ü‚·B
-
-Œ»İ‘Î‰‚µ‚Ä‚¢‚éDB
-ESQLite
-EPostgreSQL
-
-
-•¡”‚ÌDB‚ğƒTƒ|[ƒg‚µ‚½‚¢‚ªA‚±‚ÌƒvƒƒWƒFƒNƒg“à•”‚ÅConnection‚ğg‚¨‚¤‚Æ‚·‚é‚Æ
-ƒ‰ƒCƒuƒ‰ƒŠ‚ğDB‚Æ“¯‚¶”’Ç‰Á‚µ‚È‚¢‚Æ‚¢‚¯‚È‚¢‚Ì‚ÅAˆË‘¶ŠÖŒW‚ª‹­‚­Ad‚­‚È‚Á‚Ä‚µ‚Ü‚¤
-‚Ç‚¤‚É‚©ŠO‘¤‚©‚çConnection‚ğ‚Á‚Ä‚±‚ç‚ê‚é‚æ‚¤‚É‚µ‚½‚¢
-¨Generic‚âDynamic‚Í‚ ‚ñ‚Ü‚èg‚¢‚½‚­‚È‚¢i‰½‚Å‚à“ü‚ê‚ç‚ê‚¿‚á‚¤‚Ì‚Åj
-
-‚±‚ÌƒvƒƒWƒFƒNƒg‚ÍSQL‚ğì¬‚·‚é‚Ì‚İ‚ÅAÀs‚Í–³‚µEEEH
-¨‚±‚ê‚¾‚¯‚¾‚Æ‚Ç‚¤‚¢‚¤—¬‚ê‚Åg‚¤‚Ì‚©•ª‚©‚è‚Ã‚ç‚»‚¤
-
-ÀÛConnection‚ğg‚Á‚ÄSQL‚ğÀs‚·‚é•”•ª‚ÍŠO‘¤‚É‚Á‚Ä‚¢‚­
-¨‚»‚ÌƒvƒƒWƒFƒNƒg‚ğƒ‰ƒCƒuƒ‰ƒŠ‚Æ‚·‚é‚©example‚Æ‚·‚é‚©
-¨‚Ğ‚Æ‚Ü‚¸example‚ÅI
-
-ƒe[ƒuƒ‹’è‹`æ“¾‚ÆAƒe[ƒuƒ‹‘¶İƒ`ƒFƒbƒN‚ğˆê‚É‚µ‚½‚¢
-ƒJƒ‰ƒ€”‚Åƒ`ƒFƒbƒN‚µ‚æ‚¤‚Æ‚µ‚½‚ªAƒJƒ‰ƒ€‚ª‘¶İ‚µ‚È‚¢ƒe[ƒuƒ‹‚ğì‚é‚±‚Æ‚à‰Â”\‚È‚Ì‚Å‚´‚éƒ`ƒFƒbƒN‚É‚È‚Á‚Ä‚µ‚Ü‚¤EEEE
-¨CREATE TABLE IF NOT EXISTS‚Å‰ğŒˆBƒe[ƒuƒ‹‚ª‘¶İ‚µ‚È‚¢ê‡‚É‚Ì‚İì¬‚·‚é
-
-ƒJƒ‰ƒ€‚ª‘¶İ‚µ‚È‚¢ê‡‚ÉŒÀ‚èAALTER TABLE•¶‚ğÀs‚µ‚ÄSampleColumnƒJƒ‰ƒ€‚ğ’Ç‰Á‚·‚é‚Æ‚¢‚¤‚±‚Æ‚à‚µ‚æ‚¤‚Æ‚µ‚½‚ªBBB
-¨“à•”‚ÉTableDefinition‚ğ‚Á‚ÄADB‚ÉÚ‘±‚¹‚¸ƒJƒ‰ƒ€‘¶İƒ`ƒFƒbƒN‚ğ‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚é‚½‚ßˆê’U•Û—¯
-¨ƒJƒ‰ƒ€‚²‚Æ‚Éƒ`ƒFƒbƒN‚µ‚Ä`‚Æ‚¢‚¤SQL‚ğ—¬‚·‚Æd‚»‚¤‚È‚½‚ß
-
-‰Û‘èF
-SQL‚Í‘å•¶š¬•¶š‹æ•Ê‚³‚ê‚È‚¢‚½‚ßA‘¶İƒ`ƒFƒbƒN‚ÅƒGƒ‰[‚É‚È‚éê‡‚ª‚ ‚é
-SQLƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“‚Í‚ß‚¿‚á‚­‚¿‚áo—ˆ‚éó‘Ô
-Json‚Ì“ü‚êq‚Í‘Î‰‚µ‚Ä‚¢‚È‚¢BÄ‹Aˆ—g‚¦‚Îo—ˆ‚é‚Æv‚¤‚ª‚ ‚Ü‚è‚â‚é‹C‚ª‹N‚«‚È‚¢
-“à•”‚ÉTableDefinition‚ÌƒŠƒXƒg‚ğ‚Á‚ÄADB‚ÉÚ‘±‚¹‚¸ƒJƒ‰ƒ€‘¶İƒ`ƒFƒbƒN‚ğ‚µ‚æ‚¤
-
-If Json and Xml are specified, RDB tables and columns will be created automatically and Insert will be performed.
-DynamicInsert automatically creates the missing columns each time you insert.
-
-Currently supported DB
-E SQLite
-E PostgreSQL
-
-I want to support multiple DBs, but when I try to use Connection inside this project
-Since you have to add the same number of libraries as DB, the dependency is strong and it becomes heavy.
-I want to be able to bring Connection from the outside somehow
-¨ I don't want to use Generic or Dynamic so much (because I can put anything in it)
-
-This project only creates SQL, no execution ...?
-¨ It seems difficult to understand how to use it with just this
-
-The part that actually executes SQL using Connection is brought to the outside
-¨ Whether the project is a library or an example
-¨ For the time being, use example!
-
-I want to get the table definition and check the existence of the table together.
-I tried to check by the number of columns, but it is possible to create a table without columns, so it will be a check ...
-¨ Solved with CREATE TABLE IF NOT EXISTS. Create only if the table does not exist
-
-I also tried to add a SampleColumn column by executing an ALTER TABLE statement only if the column doesn't exist. .. ..
-¨ It has a TableDefinition inside and is temporarily suspended because it is trying to check the existence of columns without connecting to the DB.
-¨ Because it seems heavy if you check each column and run the SQL
-
-Task:
-SQL is not case sensitive and may result in an error in existence checking
-SQL injection can be messed up
-Json nesting is not supported. I think it can be done by using recursive processing, but I don't get much motivation
+Json,Xmlã‚’æŒ‡å®šã™ã‚‹ã¨è‡ªå‹•ã§RDBã®ãƒ†ãƒ¼ãƒ–ãƒ«ã€ã‚«ãƒ©ãƒ ã‚’ä½œæˆã—Insertã‚’è¡Œã„ã¾ã™ã€‚<br>
+DynamicInsertã§ã¯ã€Insertã™ã‚‹ãŸã³ã«è¶³ã‚Šãªã„ã‚«ãƒ©ãƒ ãŒè‡ªå‹•ä½œæˆã•ã‚Œã¾ã™ã€‚<br>
+<br>
+ç¾åœ¨å¯¾å¿œã—ã¦ã„ã‚‹DB<br>
+ãƒ»SQLite<br>
+ãƒ»PostgreSQL<br>
+<br>
+<br>
+è¤‡æ•°ã®DBã‚’ã‚µãƒãƒ¼ãƒˆã—ãŸã„ãŒã€ã“ã®ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆå†…éƒ¨ã§Connectionã‚’ä½¿ãŠã†ã¨ã™ã‚‹ã¨<br>
+ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’DBã¨åŒã˜æ•°è¿½åŠ ã—ãªã„ã¨ã„ã‘ãªã„ã®ã§ã€ä¾å­˜é–¢ä¿‚ãŒå¼·ãã€é‡ããªã£ã¦ã—ã¾ã†<br>
+ã©ã†ã«ã‹å¤–å´ã‹ã‚‰Connectionã‚’æŒã£ã¦ã“ã‚‰ã‚Œã‚‹ã‚ˆã†ã«ã—ãŸã„<br>
+â†’Genericã‚„Dynamicã¯ã‚ã‚“ã¾ã‚Šä½¿ã„ãŸããªã„ï¼ˆä½•ã§ã‚‚å…¥ã‚Œã‚‰ã‚Œã¡ã‚ƒã†ã®ã§ï¼‰<br>
+<br>
+ã“ã®ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã¯SQLã‚’ä½œæˆã™ã‚‹ã®ã¿ã§ã€å®Ÿè¡Œã¯ç„¡ã—ãƒ»ãƒ»ãƒ»ï¼Ÿ<br>
+â†’ã“ã‚Œã ã‘ã ã¨ã©ã†ã„ã†æµã‚Œã§ä½¿ã†ã®ã‹åˆ†ã‹ã‚Šã¥ã‚‰ãã†<br>
+<br>
+å®Ÿéš›Connectionã‚’ä½¿ã£ã¦SQLã‚’å®Ÿè¡Œã™ã‚‹éƒ¨åˆ†ã¯å¤–å´ã«æŒã£ã¦ã„ã<br>
+â†’ãã®ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¨ã™ã‚‹ã‹exampleã¨ã™ã‚‹ã‹<br>
+â†’ã²ã¨ã¾ãšexampleã§ï¼<br>
+<br>
+ãƒ†ãƒ¼ãƒ–ãƒ«å®šç¾©å–å¾—ã¨ã€ãƒ†ãƒ¼ãƒ–ãƒ«å­˜åœ¨ãƒã‚§ãƒƒã‚¯ã‚’ä¸€ç·’ã«ã—ãŸã„<br>
+ã‚«ãƒ©ãƒ æ•°ã§ãƒã‚§ãƒƒã‚¯ã—ã‚ˆã†ã¨ã—ãŸãŒã€ã‚«ãƒ©ãƒ ãŒå­˜åœ¨ã—ãªã„ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œã‚‹ã“ã¨ã‚‚å¯èƒ½ãªã®ã§ã–ã‚‹ãƒã‚§ãƒƒã‚¯ã«ãªã£ã¦ã—ã¾ã†ãƒ»ãƒ»ãƒ»ãƒ»<br>
+â†’CREATE TABLE IF NOT EXISTSã§è§£æ±ºã€‚ãƒ†ãƒ¼ãƒ–ãƒ«ãŒå­˜åœ¨ã—ãªã„å ´åˆã«ã®ã¿ä½œæˆã™ã‚‹<br>
+<br>
+ã‚«ãƒ©ãƒ ãŒå­˜åœ¨ã—ãªã„å ´åˆã«é™ã‚Šã€ALTER TABLEæ–‡ã‚’å®Ÿè¡Œã—ã¦SampleColumnã‚«ãƒ©ãƒ ã‚’è¿½åŠ ã™ã‚‹ã¨ã„ã†ã“ã¨ã‚‚ã—ã‚ˆã†ã¨ã—ãŸãŒã€‚ã€‚ã€‚<br>
+â†’å†…éƒ¨ã«TableDefinitionã‚’æŒã£ã¦ã€DBã«æ¥ç¶šã›ãšã‚«ãƒ©ãƒ å­˜åœ¨ãƒã‚§ãƒƒã‚¯ã‚’ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹ãŸã‚ä¸€æ—¦ä¿ç•™<br>
+â†’ã‚«ãƒ©ãƒ ã”ã¨ã«ãƒã‚§ãƒƒã‚¯ã—ã¦ï½ã¨ã„ã†SQLã‚’æµã™ã¨é‡ãã†ãªãŸã‚<br>
+<br>
+èª²é¡Œï¼š<br>
+SQLã¯å¤§æ–‡å­—å°æ–‡å­—åŒºåˆ¥ã•ã‚Œãªã„ãŸã‚ã€å­˜åœ¨ãƒã‚§ãƒƒã‚¯ã§ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹å ´åˆãŒã‚ã‚‹<br>
+SQLã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ã¯ã‚ã¡ã‚ƒãã¡ã‚ƒå‡ºæ¥ã‚‹çŠ¶æ…‹<br>
+Jsonã®å…¥ã‚Œå­ã¯å¯¾å¿œã—ã¦ã„ãªã„ã€‚å†å¸°å‡¦ç†ä½¿ãˆã°å‡ºæ¥ã‚‹ã¨æ€ã†ãŒã‚ã¾ã‚Šã‚„ã‚‹æ°—ãŒèµ·ããªã„<br>
+å†…éƒ¨ã«TableDefinitionã®ãƒªã‚¹ãƒˆã‚’æŒã£ã¦ã€DBã«æ¥ç¶šã›ãšã‚«ãƒ©ãƒ å­˜åœ¨ãƒã‚§ãƒƒã‚¯ã‚’ã—ã‚ˆã†<br>
+<br>
+If Json and Xml are specified, RDB tables and columns will be created automatically and Insert will be performed.<br>
+DynamicInsert automatically creates the missing columns each time you insert.<br>
+<br>
+Currently supported DB<br>
+ãƒ» SQLite<br>
+ãƒ» PostgreSQL<br>
+<br>
+I want to support multiple DBs, but when I try to use Connection inside this project<br>
+Since you have to add the same number of libraries as DB, the dependency is strong and it becomes heavy.<br>
+I want to be able to bring Connection from the outside somehow<br>
+â†’ I don't want to use Generic or Dynamic so much (because I can put anything in it)<br>
+<br>
+This project only creates SQL, no execution ...?<br>
+â†’ It seems difficult to understand how to use it with just this<br>
+<br>
+The part that actually executes SQL using Connection is brought to the outside<br>
+â†’ Whether the project is a library or an example<br>
+â†’ For the time being, use example!<br>
+<br>
+I want to get the table definition and check the existence of the table together.<br>
+I tried to check by the number of columns, but it is possible to create a table without columns, so it will be a check ...<br>
+â†’ Solved with CREATE TABLE IF NOT EXISTS. Create only if the table does not exist<br>
+<br>
+I also tried to add a SampleColumn column by executing an ALTER TABLE statement only if the column doesn't exist. .. ..<br>
+â†’ It has a TableDefinition inside and is temporarily suspended because it is trying to check the existence of columns without connecting to the DB.<br>
+â†’ Because it seems heavy if you check each column and run the SQL<br>
+<br>
+Task:<br>
+SQL is not case sensitive and may result in an error in existence checking<br>
+SQL injection can be messed up<br>
+Json nesting is not supported. I think it can be done by using recursive processing, but I don't get much motivation<br>
 Let's have a list of TableDefinition inside and check column existence without connecting to DB
