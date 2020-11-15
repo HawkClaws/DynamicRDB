@@ -21,15 +21,7 @@ namespace DynamicRDBFacade
 
 		public void DynamicInsert(IEnumerable<DBObject> dbobjects, string tableName)
 		{
-			CreateTable(dbobjects, tableName);
-
-			var existsColumnsName = this.DataRepository.GetTableDefinition(tableName).ColumnDefinitions.Select(p => p.ColumnName);
-			var createColumnsName = dbobjects.Where(p => existsColumnsName.Contains(p.ColumnName) == false);
-			if (createColumnsName.Any())
-			{
-				var createColumnSql = this.SqlCreator.AlterTableSql(createColumnsName, tableName);
-				this.DataRepository.ExecuteSql(createColumnSql);
-			}
+			DynamicInsertCommon(dbobjects, tableName);
 
 			StaticInsert(dbobjects, tableName);
 		}
@@ -42,15 +34,7 @@ namespace DynamicRDBFacade
 
 		public void DynamicMultiInsert(IEnumerable<IEnumerable<DBObject>> dbobjectsList, string tableName)
 		{
-			CreateTable(dbobjectsList.First(), tableName);
-
-			var existsColumnsName = this.DataRepository.GetTableDefinition(tableName).ColumnDefinitions.Select(p => p.ColumnName);
-			var createColumnsName = dbobjectsList.First().Where(p => existsColumnsName.Contains(p.ColumnName) == false);
-			if (createColumnsName.Any())
-			{
-				var createColumnSql = this.SqlCreator.AlterTableSql(createColumnsName, tableName);
-				this.DataRepository.ExecuteSql(createColumnSql);
-			}
+			DynamicInsertCommon(dbobjectsList.First(), tableName);
 
 			StaticMultiInsert(dbobjectsList, tableName);
 		}
@@ -64,6 +48,19 @@ namespace DynamicRDBFacade
 		{
 			var createTableSql = this.SqlCreator.CreateTableSql(dbobjects, tableName);
 			this.DataRepository.ExecuteSql(createTableSql);
+		}
+
+		private void DynamicInsertCommon(IEnumerable<DBObject> dbobjects, string tableName)
+		{
+			CreateTable(dbobjects, tableName);
+
+			var existsColumnsName = this.DataRepository.GetTableDefinition(tableName).ColumnDefinitions.Select(p => p.ColumnName.ToLower());
+			var createColumnsName = dbobjects.Where(p => existsColumnsName.Contains(p.ColumnName.ToLower()) == false);
+			if (createColumnsName.Any())
+			{
+				var createColumnSql = this.SqlCreator.AlterTableSql(createColumnsName, tableName);
+				this.DataRepository.ExecuteSql(createColumnSql);
+			}
 		}
 	}
 }

@@ -31,6 +31,8 @@ SQLは大文字小文字区別されないため、存在チェックでエラ�
 SQLインジェクションはめちゃくちゃ出来る状態<br>
 Jsonの入れ子は対応していない。再帰処理使えば出来ると思うがあまりやる気が起きない<br>
 内部にTableDefinitionのリストを持って、DBに接続せずカラム存在チェックをしよう<br>
+TableDefinitionの際、テーブル名が大文字だと取得できなかったりする？<br>
+　→インサートの時にテーブル名が勝手に小文字にってる<br>
 <br>
 If Json and Xml are specified, RDB tables and columns will be created automatically and Insert will be performed.<br>
 DynamicInsert automatically creates the missing columns each time you insert.<br>
