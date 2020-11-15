@@ -14,7 +14,7 @@ namespace DynamicRDB.SqlCreator
 
 			foreach (DBObject dBObject in dBObjects)
 			{
-				difinList.Add(string.Format("{0} {1}", dBObject.ColumnName, ColumnTypeDifin[dBObject.ValueType]));
+				difinList.Add(string.Format("{0} {1} {2}", dBObject.ColumnName, ColumnTypeDifin[dBObject.ValueType], dBObject.Unique ? "UNIQUE" : string.Empty));
 			}
 
 			string cmdStrBase = @"CREATE TABLE IF NOT EXISTS {0} ({1});";
@@ -28,7 +28,7 @@ namespace DynamicRDB.SqlCreator
 
 			foreach (DBObject dBObject in dBObjects)
 			{
-				difinList.Add(string.Format("ADD COLUMN {0} {1}", dBObject.ColumnName, ColumnTypeDifin[dBObject.ValueType]));
+				difinList.Add(string.Format("ADD COLUMN {0} {1} {2}", dBObject.ColumnName, ColumnTypeDifin[dBObject.ValueType], dBObject.Unique ? "UNIQUE" : string.Empty));
 			}
 
 			string cmdStrBase = @"ALTER TABLE {0} {1};";

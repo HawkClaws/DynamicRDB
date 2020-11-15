@@ -15,5 +15,6 @@ namespace DynamicRDB.Model
 		public string ColumnName { get; private set; }
 		public DBValueType ValueType { get; private set; }
 		public string Value { get; private set; }
+		public bool Unique { get; set; }
 	}
 }
