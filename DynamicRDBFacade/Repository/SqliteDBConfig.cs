@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Text;
 
-namespace DynamicRDBExample.Repository
+namespace DynamicRDBFacade.Repository
 {
 	public class SqliteDBConfig
 	{

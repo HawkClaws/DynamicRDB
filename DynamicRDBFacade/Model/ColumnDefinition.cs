@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DynamicRDBExample.Model
+namespace DynamicRDBFacade.Model
 {
 	public class ColumnDefinition
 	{

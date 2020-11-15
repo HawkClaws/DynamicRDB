@@ -2,15 +2,13 @@
 using DynamicRDB.Model;
 using DynamicRDB.SqlCreator;
 using DynamicRDBExample.Repository;
+using DynamicRDBFacade;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Xml;
-using System.Xml.Linq;
 
 namespace DynamicRDBExample
 {
@@ -19,7 +17,7 @@ namespace DynamicRDBExample
 		static void Main(string[] args)
 		{
 			//var executer = new Executer(new SQLiteCreator(), new SqliteRepository());
-			var executer = new Executer(new PostgreCreator(), new PostgreDataRepository());
+			var executer = new DynamicRDBService(new PostgreCreator(), new PostgreDataRepository());
 
 			var startupPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); ;
 
@@ -92,62 +90,5 @@ namespace DynamicRDBExample
 		}
 	}
 
-	internal class Executer
-	{
-		private ISqlCreator SqlCreator;
-		private IDataRepository DataRepository;
 
-		internal Executer(ISqlCreator sqlCreator, IDataRepository dataRepository)
-		{
-			this.SqlCreator = sqlCreator;
-			this.DataRepository = dataRepository;
-		}
-
-		internal void DynamicInsert(IEnumerable<DBObject> dbobjects, string tableName)
-		{
-			CreateTable(dbobjects, tableName);
-
-			var existsColumnsName = this.DataRepository.GetTableDefinition(tableName).ColumnDefinitions.Select(p => p.ColumnName);
-			var createColumnsName = dbobjects.Where(p => existsColumnsName.Contains(p.ColumnName) == false);
-			if (createColumnsName.Any())
-			{
-				var createColumnSql = this.SqlCreator.AlterTableSql(createColumnsName, tableName);
-				this.DataRepository.ExecuteSql(createColumnSql);
-			}
-
-			StaticInsert(dbobjects, tableName);
-		}
-
-		internal void StaticInsert(IEnumerable<DBObject> dbobjects, string tableName)
-		{
-			var dml = this.SqlCreator.InsertSql(dbobjects, tableName);
-			this.DataRepository.ExecuteSql(dml);
-		}
-
-		internal void DynamicMultiInsert(IEnumerable<IEnumerable<DBObject>> dbobjectsList, string tableName)
-		{
-			CreateTable(dbobjectsList.First(), tableName);
-
-			var existsColumnsName = this.DataRepository.GetTableDefinition(tableName).ColumnDefinitions.Select(p => p.ColumnName);
-			var createColumnsName = dbobjectsList.First().Where(p => existsColumnsName.Contains(p.ColumnName) == false);
-			if (createColumnsName.Any())
-			{
-				var createColumnSql = this.SqlCreator.AlterTableSql(createColumnsName, tableName);
-				this.DataRepository.ExecuteSql(createColumnSql);
-			}
-
-			StaticMultiInsert(dbobjectsList, tableName);
-		}
-		internal void StaticMultiInsert(IEnumerable<IEnumerable<DBObject>> dbobjects, string tableName)
-		{
-			var dml = this.SqlCreator.MultiInsert(dbobjects, tableName);
-			this.DataRepository.ExecuteSql(dml);
-		}
-
-		internal void CreateTable(IEnumerable<DBObject> dbobjects, string tableName)
-		{
-			var createTableSql = this.SqlCreator.CreateTableSql(dbobjects, tableName);
-			this.DataRepository.ExecuteSql(createTableSql);
-		}
-	}
 }

@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicRDB", "DynamicRDB\DynamicRDB.csproj", "{9898AC1C-17E2-41A2-A841-BF3D8753C1EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicRDBExample", "DynamicRDBExample\DynamicRDBExample.csproj", "{27A3310D-C7E6-4839-A272-ADA91F3881B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicRDBExample", "DynamicRDBExample\DynamicRDBExample.csproj", "{27A3310D-C7E6-4839-A272-ADA91F3881B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicRDBFacade", "DynamicRDBFacade\DynamicRDBFacade.csproj", "{E4D6F284-B39C-496F-9648-D968D8D3C13E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{27A3310D-C7E6-4839-A272-ADA91F3881B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27A3310D-C7E6-4839-A272-ADA91F3881B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27A3310D-C7E6-4839-A272-ADA91F3881B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4D6F284-B39C-496F-9648-D968D8D3C13E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4D6F284-B39C-496F-9648-D968D8D3C13E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4D6F284-B39C-496F-9648-D968D8D3C13E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4D6F284-B39C-496F-9648-D968D8D3C13E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

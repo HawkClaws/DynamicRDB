@@ -1,11 +1,11 @@
-﻿using DynamicRDBExample.Model;
+﻿using DynamicRDBFacade.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DynamicRDBExample.Repository
+namespace DynamicRDBFacade.Repository
 {
-	interface IDataRepository
+	public interface IDataRepository
 	{
 		public TableDefinition GetTableDefinition(string tableName);
 		public void ExecuteSql(string sql);

@@ -1,0 +1,26 @@
+{
+	"array": [
+		{
+			"category": "fruits",
+			"name": "apple",
+			"price": 150,
+			"sweetness": 5.5
+		},
+		{
+			"category": "fruits",
+			"name": "orange",
+			"price": 120,
+			"sweetness": 3.5
+		},
+		{
+			"category": "fruits",
+			"name": "ruby-roman",
+			"price": 15000,
+			"sweetness": 24
+		}
+	]
+}
+
+
+
+

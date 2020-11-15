@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Text;
 
-namespace DynamicRDBExample
+namespace DynamicRDBFacade
 {
 	public class PostgreDBConfig
 	{

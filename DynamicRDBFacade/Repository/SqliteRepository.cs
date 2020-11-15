@@ -1,13 +1,11 @@
-﻿using DynamicRDBExample.Model;
-using System;
+﻿using DynamicRDBFacade.Model;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
-using System.Text;
 
-namespace DynamicRDBExample.Repository
+namespace DynamicRDBFacade.Repository
 {
-	class SqliteRepository : IDataRepository
+	public class SqliteRepository : IDataRepository
 	{
 		public void ExecuteSql(string sql)
 		{

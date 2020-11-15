@@ -1,13 +1,13 @@
-﻿using DynamicRDBExample.Model;
+﻿using DynamicRDBFacade;
+using DynamicRDBFacade.Model;
+using DynamicRDBFacade.Repository;
 using Npgsql;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 
 namespace DynamicRDBExample.Repository
 {
-	class PostgreDataRepository: IDataRepository
+	public class PostgreDataRepository: IDataRepository
 	{
 
 		public bool IsExistTable(string tableName)
