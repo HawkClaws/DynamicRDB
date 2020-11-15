@@ -7,7 +7,7 @@ using System.Data;
 
 namespace DynamicRDBExample.Repository
 {
-	public class PostgreDataRepository: IDataRepository
+	public class PostgreRepository: IDataRepository
 	{
 
 		public bool IsExistTable(string tableName)
