@@ -10,6 +10,7 @@ namespace DynamicRDB.SqlCreator
 		public string CreateTableSql(IEnumerable<DBObject> dBObjects, string tableName);
 		public string AlterTableSql(IEnumerable<DBObject> dBObjects, string tableName);
 		public string InsertSql(IEnumerable<DBObject> dBObjects, string tableName);
+		public string MultiInsert(IEnumerable<IEnumerable<DBObject>> dBObjectsList, string tableName);
 
 	}
 }

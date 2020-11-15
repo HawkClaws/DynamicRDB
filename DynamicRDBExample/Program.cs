@@ -23,6 +23,7 @@ namespace DynamicRDBExample
 
 			var startupPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); ;
 
+			//Common
 			JObject jObject = ReadJsonFile(Path.Combine(startupPath, "test.json"));
 			var info = CreateInfo(jObject);
 			executer.DynamicInsert(info.Item1, info.Item2);
@@ -30,12 +31,13 @@ namespace DynamicRDBExample
 			jObject = ReadJsonFile(Path.Combine(startupPath, "test2.json"));
 			info = CreateInfo(jObject);
 			executer.DynamicInsert(info.Item1, info.Item2);
-
+			
+			//AddColumn
 			jObject = ReadJsonFile(Path.Combine(startupPath, "test3.json"));
 			info = CreateInfo(jObject);
 			executer.DynamicInsert(info.Item1, info.Item2);
 
-
+			//xml
 			XmlDocument doc = new XmlDocument();
 			var str = ReadFile(Path.Combine(startupPath, "test4.xml"));
 			doc.LoadXml(str);
@@ -48,6 +50,19 @@ namespace DynamicRDBExample
 
 			info = CreateInfo(jObject);
 			executer.DynamicInsert(info.Item1, info.Item2);
+
+			//Multi
+			jObject = ReadJsonFile(Path.Combine(startupPath, "test5.json"));
+			List<IEnumerable<DBObject>> dBObjects = new List<IEnumerable<DBObject>>();
+
+			string dbName = string.Empty;
+			foreach (JObject j in jObject["array"].Children()){
+				var dbinfo = CreateInfo(j);
+				dBObjects.Add(dbinfo.Item1);
+				dbName = dbinfo.Item2;
+			}
+			executer.DynamicMultiInsert(dBObjects, dbName);
+
 		}
 
 		private static JObject ReadJsonFile(string path)
@@ -106,6 +121,26 @@ namespace DynamicRDBExample
 		internal void StaticInsert(IEnumerable<DBObject> dbobjects, string tableName)
 		{
 			var dml = this.SqlCreator.InsertSql(dbobjects, tableName);
+			this.DataRepository.ExecuteSql(dml);
+		}
+
+		internal void DynamicMultiInsert(IEnumerable<IEnumerable<DBObject>> dbobjectsList, string tableName)
+		{
+			CreateTable(dbobjectsList.First(), tableName);
+
+			var existsColumnsName = this.DataRepository.GetTableDefinition(tableName).ColumnDefinitions.Select(p => p.ColumnName);
+			var createColumnsName = dbobjectsList.First().Where(p => existsColumnsName.Contains(p.ColumnName) == false);
+			if (createColumnsName.Any())
+			{
+				var createColumnSql = this.SqlCreator.AlterTableSql(createColumnsName, tableName);
+				this.DataRepository.ExecuteSql(createColumnSql);
+			}
+
+			StaticMultiInsert(dbobjectsList, tableName);
+		}
+		internal void StaticMultiInsert(IEnumerable<IEnumerable<DBObject>> dbobjects, string tableName)
+		{
+			var dml = this.SqlCreator.MultiInsert(dbobjects, tableName);
 			this.DataRepository.ExecuteSql(dml);
 		}
 

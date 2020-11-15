@@ -1,6 +1,7 @@
 ﻿using DynamicRDB.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DynamicRDB.SqlCreator
@@ -51,20 +52,30 @@ namespace DynamicRDB.SqlCreator
 			return string.Format(cmdStrBase, tableName, string.Join(',', columnList), string.Join(',', valueList));
 		}
 
+		public string MultiInsert(IEnumerable<IEnumerable<DBObject>> dBObjectsList, string tableName)
+		{
+			List<string> columnList = new List<string>();
+			List<string> valueList = new List<string>();
 
-		//public void MultiInsert(string tableName, long[] datas)
-		//{
-		//	using (NpgsqlConnection conn = DBConfig.OpendNpgsqlConnection())
-		//	{
-		//		string valuesBase = "( {0}, '{0}' )";
-		//		string cmdStrBase = @"INSERT INTO {0} (id, name) VALUES {1};";
-		//		string values = string.Join(",", datas.Select(p => string.Format(valuesBase, p)));
 
-		//		string cmdStr = string.Format(cmdStrBase, tableName, values);
-		//		var cmd = new NpgsqlCommand(cmdStr, conn);
-		//		cmd.ExecuteNonQuery();
-		//	}
-		//}
+			foreach (DBObject dBObject in dBObjectsList.First())
+			{
+				columnList.Add(dBObject.ColumnName);
+			}
+
+			foreach (var dBObjects in dBObjectsList)
+			{
+				List<string> values = new List<string>();
+				foreach (DBObject dBObject in dBObjects)
+				{
+					values.Add(string.Format(ValueTypeDifin[dBObject.ValueType], dBObject.Value));
+				}
+				valueList.Add('(' + string.Join(',', values) + ')');
+			}
+			string cmdStrBase = @"INSERT INTO {0} ({1}) VALUES {2};";
+
+			return string.Format(cmdStrBase, tableName, string.Join(',', columnList), string.Join(',', valueList));
+		}
 
 		private Dictionary<DBValueType, string> ColumnTypeDifin = new Dictionary<DBValueType, string>()
 		{
