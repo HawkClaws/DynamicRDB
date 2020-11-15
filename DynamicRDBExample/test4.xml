@@ -1,0 +1,8 @@
+<xml>
+	<category>animal</category>
+	<classification>Tiger</classification>
+	<name>tora</name>
+	<age>14</age>
+	<weight>59</weight>
+	<cute>false</cute>
+</xml>
