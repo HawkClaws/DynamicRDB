@@ -3,6 +3,7 @@ using DynamicRDB.Model;
 using DynamicRDB.SqlCreator;
 using DynamicRDBExample.Repository;
 using DynamicRDBFacade;
+using DynamicRDBFacade.Repository;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace DynamicRDBExample
 		static void Main(string[] args)
 		{
 			//var executer = new DynamicRDBService(new SQLiteCreator(), new SqliteRepository());
-			var executer = new DynamicRDBService(new PostgreCreator(), new PostgreDataRepository());
+			var executer = new DynamicRDBService(new PostgreCreator(), new PostgreRepository());
 
 			var startupPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); ;
 
