@@ -12,9 +12,9 @@ namespace DynamicRDB.Model
 			this.ValueType = valueType;
 			this.Value = value;
 		}
-		public string ColumnName { get; private set; }
-		public DBValueType ValueType { get; private set; }
-		public string Value { get; private set; }
+		public string ColumnName { get; }
+		public DBValueType ValueType { get; }
+		public string Value { get; }
 		public bool Unique { get; set; }
 	}
 }

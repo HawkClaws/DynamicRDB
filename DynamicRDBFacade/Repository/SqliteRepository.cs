@@ -7,10 +7,16 @@ namespace DynamicRDBFacade.Repository
 {
 	public class SqliteRepository : IDataRepository
 	{
+		public SqliteRepository(SQLiteConnection conn)
+		{
+			sQLiteConnection = conn;
+		}
+		private SQLiteConnection sQLiteConnection;
 		public void ExecuteSql(string sql)
 		{
-			using (SQLiteConnection conn = new SqliteDBConfig().OpendSQLiteConnection())
+			using (SQLiteConnection conn = new SQLiteConnection(sQLiteConnection))
 			{
+				conn.Open();
 				var cmd = new SQLiteCommand(sql, conn);
 				cmd.ExecuteNonQuery();
 			}
@@ -19,8 +25,9 @@ namespace DynamicRDBFacade.Repository
 		public TableDefinition GetTableDefinition(string tableName)
 		{
 			List<ColumnDefinition> columnDefinitions = new List<ColumnDefinition>();
-			using (SQLiteConnection conn = new SqliteDBConfig().OpendSQLiteConnection())
+			using (SQLiteConnection conn = new SQLiteConnection(sQLiteConnection))
 			{
+				conn.Open();
 				string cmdStr = string.Format("PRAGMA table_info('{0}');", tableName);
 				var cmd = new SQLiteCommand(cmdStr, conn);
 				var da = new SQLiteDataAdapter(cmd);

@@ -13,8 +13,8 @@ namespace DynamicRDBFacade.Model
 			this.ColumnDefinitions = columnDefinitions;
 		}
 
-		public string TableName { get; private set; }
+		public string TableName { get; }
 
-		public List<ColumnDefinition> ColumnDefinitions { get; private set; }
+		public List<ColumnDefinition> ColumnDefinitions { get; }
 	}
 }

@@ -13,7 +13,6 @@ namespace DynamicRDBFacade.Repository
 		{
 			var connectionSb = new SQLiteConnectionStringBuilder { DataSource = DBName };
 			var con = new SQLiteConnection(connectionSb.ToString());
-			con.Open();
 			return con;
 		}
 	}

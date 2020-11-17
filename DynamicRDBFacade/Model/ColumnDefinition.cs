@@ -6,8 +6,8 @@ namespace DynamicRDBFacade.Model
 {
 	public class ColumnDefinition
 	{
-		public string ColumnName { get; private set; }
-		public string DataType { get; private set; }
+		public string ColumnName { get; }
+		public string DataType { get; }
 
 		public ColumnDefinition(string columnName, string dataType)
 		{

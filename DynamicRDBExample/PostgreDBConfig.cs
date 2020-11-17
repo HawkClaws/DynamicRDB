@@ -11,7 +11,6 @@ namespace DynamicRDBFacade
 		public  NpgsqlConnection OpendNpgsqlConnection()
 		{
 			var con = new NpgsqlConnection(PostgreDBConfig.ConnectionString);
-			con.Open();
 			return con;
 		}
 

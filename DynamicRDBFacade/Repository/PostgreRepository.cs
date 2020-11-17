@@ -7,13 +7,18 @@ using System.Data;
 
 namespace DynamicRDBExample.Repository
 {
-	public class PostgreRepository: IDataRepository
+	public class PostgreRepository : IDataRepository
 	{
-
+		public PostgreRepository(NpgsqlConnection conn)
+		{
+			npgsqlConnectionString = conn.ConnectionString;
+		}
+		private string npgsqlConnectionString;
 		public bool IsExistTable(string tableName)
 		{
-			using (NpgsqlConnection conn = new PostgreDBConfig().OpendNpgsqlConnection())
+			using (NpgsqlConnection conn = new NpgsqlConnection(npgsqlConnectionString))
 			{
+				conn.Open();
 				string cmdStr = string.Format("SELECT * FROM information_schema.tables WHERE table_name = '{0}';", tableName);
 				var cmd = new NpgsqlCommand(cmdStr, conn);
 				var da = new NpgsqlDataAdapter(cmd);
@@ -30,8 +35,9 @@ namespace DynamicRDBExample.Repository
 		public TableDefinition GetTableDefinition(string tableName)
 		{
 			List<ColumnDefinition> columnDefinitions = new List<ColumnDefinition>();
-			using (NpgsqlConnection conn = new PostgreDBConfig().OpendNpgsqlConnection())
+			using (NpgsqlConnection conn = new NpgsqlConnection(npgsqlConnectionString))
 			{
+				conn.Open();
 				string cmdStr = string.Format("SELECT column_name ,data_type FROM information_schema.columns WHERE table_name = '{0}';", tableName);
 				var cmd = new NpgsqlCommand(cmdStr, conn);
 				var da = new NpgsqlDataAdapter(cmd);
@@ -49,8 +55,9 @@ namespace DynamicRDBExample.Repository
 
 		public void ExecuteSql(string sql)
 		{
-			using (NpgsqlConnection conn = new PostgreDBConfig().OpendNpgsqlConnection())
+			using (NpgsqlConnection conn = new NpgsqlConnection(npgsqlConnectionString))
 			{
+				conn.Open();
 				var cmd = new NpgsqlCommand(sql, conn);
 				cmd.ExecuteNonQuery();
 			}
