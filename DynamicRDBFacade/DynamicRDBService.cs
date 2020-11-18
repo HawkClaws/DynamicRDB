@@ -3,6 +3,7 @@ using DynamicRDB.SqlCreator;
 using DynamicRDBFacade.Repository;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 
@@ -22,20 +23,25 @@ namespace DynamicRDBFacade
 		public void DynamicInsert(IEnumerable<DBObject> dbobjects, string tableName)
 		{
 			DynamicInsertCommon(dbobjects, tableName);
-
-			StaticInsert(dbobjects, tableName);
+			var dml = this.SqlCreator.InsertSql(dbobjects, tableName);
+			this.DataRepository.ExecuteSql(dml);
 		}
 
-		public void StaticInsert(IEnumerable<DBObject> dbobjects, string tableName)
+		public void Insert(IEnumerable<DBObject> dbobjects, string tableName)
 		{
 			var dml = this.SqlCreator.InsertSql(dbobjects, tableName);
+			this.DataRepository.ExecuteSql(dml);
+		}
+
+		public void Update(IEnumerable<DBObject> dBObjects, string tableName, DBObject whereObj)
+		{
+			var dml = this.SqlCreator.UpdateSql(dBObjects, tableName, whereObj);
 			this.DataRepository.ExecuteSql(dml);
 		}
 
 		public void DynamicMultiInsert(IEnumerable<IEnumerable<DBObject>> dbobjectsList, string tableName)
 		{
 			DynamicInsertCommon(dbobjectsList.First(), tableName);
-
 			StaticMultiInsert(dbobjectsList, tableName);
 		}
 		public void StaticMultiInsert(IEnumerable<IEnumerable<DBObject>> dbobjects, string tableName)

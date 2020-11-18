@@ -35,8 +35,9 @@ namespace DynamicRDB.SqlCreator
 
 		public string InsertSql(IEnumerable<DBObject> dBObjects, string tableName)
 		{
-			List<string> columnList = new List<string>();
-			List<string> valueList = new List<string>();
+			var colvalDatas = CreateColumnValueList(dBObjects);
+			var columnList = colvalDatas.Item1;
+			var valueList = colvalDatas.Item2;
 
 			foreach (DBObject dBObject in dBObjects)
 			{
@@ -44,10 +45,30 @@ namespace DynamicRDB.SqlCreator
 				columnList.Add(dBObject.ColumnName);
 			}
 
-			string cmdStrBase = @"INSERT INTO {0} ({1}) VALUES ({2});";
+			string cmdStrBase = @"INSERT INTO {0} ({1}) VALUES ({2}) ";
+			var insertSql = string.Format(cmdStrBase, tableName, string.Join(',', columnList), string.Join(',', valueList));
 
-			return string.Format(cmdStrBase, tableName, string.Join(',', columnList), string.Join(',', valueList));
+			return insertSql;
 		}
+
+		public string UpdateSql(IEnumerable<DBObject> dBObjects, string tableName, DBObject whereObj)
+		{
+			var colvalDatas = CreateColumnValueList(dBObjects);
+			var columnList = colvalDatas.Item1;
+			var valueList = colvalDatas.Item2;
+
+			List<string> updateValue = new List<string>();
+			for (int i = 0; i < columnList.Count(); i++)
+			{
+				updateValue.Add(columnList[i] + '=' + valueList[i]);
+			}
+
+			string updateSql = string.Format("UPDATE {0} SET {1} ", tableName, string.Join(',', updateValue));
+			string whereSql = string.Format("WHERE {0}={1}", whereObj.ColumnName, string.Format(ValueTypeDifin[whereObj.ValueType], whereObj.Value));
+
+			return updateSql+ whereSql;
+		}
+
 
 		public string MultiInsert(IEnumerable<IEnumerable<DBObject>> dBObjectsList, string tableName)
 		{
@@ -72,6 +93,20 @@ namespace DynamicRDB.SqlCreator
 			string cmdStrBase = @"INSERT INTO {0} ({1}) VALUES {2};";
 
 			return string.Format(cmdStrBase, tableName, string.Join(',', columnList), string.Join(',', valueList));
+		}
+
+		private (List<string>, List<string>)CreateColumnValueList(IEnumerable<DBObject> dBObjects)
+		{
+			List<string> columnList = new List<string>();
+			List<string> valueList = new List<string>();
+
+			foreach (DBObject dBObject in dBObjects)
+			{
+				valueList.Add(string.Format(ValueTypeDifin[dBObject.ValueType], dBObject.Value));
+				columnList.Add(dBObject.ColumnName);
+			}
+
+			return (columnList, valueList);
 		}
 
 		private Dictionary<DBValueType, string> ColumnTypeDifin = new Dictionary<DBValueType, string>()
