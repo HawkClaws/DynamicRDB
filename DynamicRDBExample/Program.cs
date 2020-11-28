@@ -6,6 +6,7 @@ using DynamicRDBFacade;
 using DynamicRDBFacade.Repository;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -20,7 +21,6 @@ namespace DynamicRDBExample
 			var executer = new DynamicRDBService(new SQLiteCreator(), new SqliteRepository(new SqliteDBConfig().SQLiteConnection()));
 			//var executer = new DynamicRDBService(new PostgreCreator(), new PostgreRepository(new PostgreDBConfig().NpgsqlConnection()));
 
-
 			var startupPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); ;
 
 			//Common
@@ -31,7 +31,7 @@ namespace DynamicRDBExample
 			jObject = ReadJsonFile(Path.Combine(startupPath, "test2.json"));
 			info = CreateInfo(jObject);
 			executer.DynamicInsert(info.Item1, info.Item2);
-			
+
 			//AddColumn
 			jObject = ReadJsonFile(Path.Combine(startupPath, "test3.json"));
 			info = CreateInfo(jObject);
@@ -56,13 +56,18 @@ namespace DynamicRDBExample
 			List<IEnumerable<DBObject>> dBObjects = new List<IEnumerable<DBObject>>();
 
 			string dbName = string.Empty;
-			foreach (JObject j in jObject["array"].Children()){
+			foreach (JObject j in jObject["array"].Children())
+			{
 				var dbinfo = CreateInfo(j);
 				dBObjects.Add(dbinfo.Item1);
 				dbName = dbinfo.Item2;
 			}
 			executer.DynamicMultiInsert(dBObjects, dbName);
 
+			//dataclass
+			var testdata = new ProductData { ProductName = "Magazine", Price = 500, ReleaseDate = DateTime.Now };
+			var dbobjects = new DBobjectConverter().ClassToDBObject(testdata);
+			executer.DynamicInsert(dbobjects, testdata.GetType().Name);
 		}
 
 		private static JObject ReadJsonFile(string path)
@@ -92,5 +97,10 @@ namespace DynamicRDBExample
 		}
 	}
 
-
+	internal class ProductData
+	{
+		public DateTime ReleaseDate { get; set; }
+		public string ProductName { get; set; }
+		public long Price { get; set; }
+	}
 }
