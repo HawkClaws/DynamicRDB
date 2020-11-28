@@ -17,8 +17,9 @@ namespace DynamicRDBExample
 	{
 		static void Main(string[] args)
 		{
-			//var executer = new DynamicRDBService(new SQLiteCreator(), new SqliteRepository(new SqliteDBConfig().OpendSQLiteConnection()));
-			var executer = new DynamicRDBService(new PostgreCreator(), new PostgreRepository(new PostgreDBConfig().OpendNpgsqlConnection()));
+			var executer = new DynamicRDBService(new SQLiteCreator(), new SqliteRepository(new SqliteDBConfig().SQLiteConnection()));
+			//var executer = new DynamicRDBService(new PostgreCreator(), new PostgreRepository(new PostgreDBConfig().NpgsqlConnection()));
+
 
 			var startupPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); ;
 

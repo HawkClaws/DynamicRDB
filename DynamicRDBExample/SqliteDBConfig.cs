@@ -9,7 +9,7 @@ namespace DynamicRDBFacade.Repository
 	{
 
 		public string DBName { get; } = "sqlite.db";
-		public SQLiteConnection OpendSQLiteConnection()
+		public SQLiteConnection SQLiteConnection()
 		{
 			var connectionSb = new SQLiteConnectionStringBuilder { DataSource = DBName };
 			var con = new SQLiteConnection(connectionSb.ToString());
