@@ -8,7 +8,7 @@ namespace DynamicRDB.Model
 	{
 		public DBObject(string columnName, DBValueType valueType, string value)
 		{
-			this.ColumnName = columnName;
+			this.ColumnName = columnName.ToLower();
 			this.ValueType = valueType;
 			this.Value = value;
 		}

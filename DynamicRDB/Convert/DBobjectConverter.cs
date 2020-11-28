@@ -30,7 +30,6 @@ namespace DynamicRDB.Convert
 			{
 				var type = propertyInfo.PropertyType;
 				dBObjectList.Add(new DBObject(propertyInfo.Name, ClassColumnTypeDifin[propertyInfo.PropertyType], propertyInfo.GetValue(valueClass).ToString()));
-				//dBObjectList.Add(new DBObject(jProperty.Name, JsonColumnTypeDifin[jProperty.Value.Type], jProperty.Value.ToString()));
 			}
 
 			return dBObjectList;

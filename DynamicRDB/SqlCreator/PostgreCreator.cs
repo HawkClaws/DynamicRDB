@@ -14,12 +14,12 @@ namespace DynamicRDB.SqlCreator
 
 			foreach (DBObject dBObject in dBObjects)
 			{
-				difinList.Add(string.Format("{0} {1} {2}", dBObject.ColumnName.ToLower(), ColumnTypeDifin[dBObject.ValueType], dBObject.Unique ? "UNIQUE" : string.Empty));
+				difinList.Add(string.Format("{0} {1} {2}", dBObject.ColumnName, ColumnTypeDifin[dBObject.ValueType], dBObject.Unique ? "UNIQUE" : string.Empty));
 			}
 
 			string cmdStrBase = @"CREATE TABLE IF NOT EXISTS {0} ({1});";
 
-			return string.Format(cmdStrBase, tableName.ToLower(), string.Join(',', difinList));
+			return string.Format(cmdStrBase, tableName, string.Join(',', difinList));
 		}
 
 		public string AlterTableSql(IEnumerable<DBObject> dBObjects, string tableName)
@@ -28,12 +28,12 @@ namespace DynamicRDB.SqlCreator
 
 			foreach (DBObject dBObject in dBObjects)
 			{
-				difinList.Add(string.Format("ADD COLUMN {0} {1} {2}", dBObject.ColumnName.ToLower(), ColumnTypeDifin[dBObject.ValueType], dBObject.Unique ? "UNIQUE" : string.Empty));
+				difinList.Add(string.Format("ADD COLUMN {0} {1} {2}", dBObject.ColumnName, ColumnTypeDifin[dBObject.ValueType], dBObject.Unique ? "UNIQUE" : string.Empty));
 			}
 
 			string cmdStrBase = @"ALTER TABLE {0} {1};";
 
-			return string.Format(cmdStrBase, tableName.ToLower(), string.Join(',', difinList));
+			return string.Format(cmdStrBase, tableName, string.Join(',', difinList));
 		}
 
 		public string InsertSql(IEnumerable<DBObject> dBObjects, string tableName)
@@ -43,7 +43,7 @@ namespace DynamicRDB.SqlCreator
 			var valueList = colvalDatas.Item2;
 
 			string cmdStrBase = @"INSERT INTO {0} ({1}) VALUES ({2}) ";
-			var insertSql = string.Format(cmdStrBase, tableName.ToLower(), string.Join(',', columnList), string.Join(',', valueList));
+			var insertSql = string.Format(cmdStrBase, tableName, string.Join(',', columnList), string.Join(',', valueList));
 
 			return insertSql;
 		}
@@ -57,11 +57,11 @@ namespace DynamicRDB.SqlCreator
 			List<string> updateValue = new List<string>();
 			for (int i = 0; i < columnList.Count(); i++)
 			{
-				updateValue.Add(columnList[i].ToLower() + '=' + valueList[i]);
+				updateValue.Add(columnList[i] + '=' + valueList[i]);
 			}
 
-			string updateSql = string.Format("UPDATE {0} SET {1} ", tableName.ToLower(), string.Join(',', updateValue));
-			string whereSql = string.Format("WHERE {0}={1}", whereObj.ColumnName.ToLower(), string.Format(ValueTypeDifin[whereObj.ValueType], whereObj.Value));
+			string updateSql = string.Format("UPDATE {0} SET {1} ", tableName, string.Join(',', updateValue));
+			string whereSql = string.Format("WHERE {0}={1}", whereObj.ColumnName, string.Format(ValueTypeDifin[whereObj.ValueType], whereObj.Value));
 
 			return updateSql + whereSql;
 		}
@@ -74,7 +74,7 @@ namespace DynamicRDB.SqlCreator
 
 			foreach (DBObject dBObject in dBObjectsList.First())
 			{
-				columnList.Add(dBObject.ColumnName.ToLower());
+				columnList.Add(dBObject.ColumnName);
 			}
 
 			foreach (var dBObjects in dBObjectsList)
@@ -88,7 +88,7 @@ namespace DynamicRDB.SqlCreator
 			}
 			string cmdStrBase = @"INSERT INTO {0} ({1}) VALUES {2};";
 
-			return string.Format(cmdStrBase, tableName.ToLower(), string.Join(',', columnList), string.Join(',', valueList));
+			return string.Format(cmdStrBase, tableName, string.Join(',', columnList), string.Join(',', valueList));
 		}
 
 		private (List<string>, List<string>) CreateColumnValueList(IEnumerable<DBObject> dBObjects)
@@ -99,7 +99,7 @@ namespace DynamicRDB.SqlCreator
 			foreach (DBObject dBObject in dBObjects)
 			{
 				valueList.Add(string.Format(ValueTypeDifin[dBObject.ValueType], dBObject.Value));
-				columnList.Add(dBObject.ColumnName.ToLower());
+				columnList.Add(dBObject.ColumnName);
 			}
 
 			return (columnList, valueList);
