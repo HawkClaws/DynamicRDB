@@ -19,7 +19,7 @@ namespace DynamicRDBExample.Repository
 			using (NpgsqlConnection conn = new NpgsqlConnection(npgsqlConnectionString))
 			{
 				conn.Open();
-				string cmdStr = string.Format("SELECT * FROM information_schema.tables WHERE table_name = '{0}';", tableName);
+				string cmdStr = string.Format("SELECT * FROM information_schema.tables WHERE table_name = '{0}';", tableName.ToLower());
 				var cmd = new NpgsqlCommand(cmdStr, conn);
 				var da = new NpgsqlDataAdapter(cmd);
 				var dt = new DataTable();
@@ -38,7 +38,7 @@ namespace DynamicRDBExample.Repository
 			using (NpgsqlConnection conn = new NpgsqlConnection(npgsqlConnectionString))
 			{
 				conn.Open();
-				string cmdStr = string.Format("SELECT column_name ,data_type FROM information_schema.columns WHERE table_name = '{0}';", tableName);
+				string cmdStr = string.Format("SELECT column_name ,data_type FROM information_schema.columns WHERE table_name = '{0}';", tableName.ToLower());
 				var cmd = new NpgsqlCommand(cmdStr, conn);
 				var da = new NpgsqlDataAdapter(cmd);
 				var dt = new DataTable();
