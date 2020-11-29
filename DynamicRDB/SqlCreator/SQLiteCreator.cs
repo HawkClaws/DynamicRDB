@@ -64,7 +64,7 @@ namespace DynamicRDB.SqlCreator
 			}
 
 			string updateSql = string.Format("UPDATE {0} SET {1} ", tableName, string.Join(',', updateValue));
-			string whereSql = string.Format("WHERE {0}={1}", whereObj.ColumnName, string.Format(ValueTypeDifin[whereObj.ValueType], whereObj.Value));
+			string whereSql = CreateWhere(whereObj);
 
 			return updateSql+ whereSql;
 		}
@@ -95,6 +95,19 @@ namespace DynamicRDB.SqlCreator
 			return string.Format(cmdStrBase, tableName, string.Join(',', columnList), string.Join(',', valueList));
 		}
 
+		public string SelectSql(IEnumerable<DBObject> dBObjects, string tableName, DBObject whereObj = null)
+		{
+			var colvalDatas = CreateColumnValueList(dBObjects);
+			var columnList = colvalDatas.Item1;
+
+			string whereSql = string.Empty;
+			if (whereObj != null)
+				whereSql = CreateWhere(whereObj);
+
+			string columns = string.Join(',', columnList);
+			return $"SELECT {columns} FROM {tableName}" + whereSql;
+		}
+
 		private (List<string>, List<string>)CreateColumnValueList(IEnumerable<DBObject> dBObjects)
 		{
 			List<string> columnList = new List<string>();
@@ -108,6 +121,13 @@ namespace DynamicRDB.SqlCreator
 
 			return (columnList, valueList);
 		}
+
+		private string CreateWhere(DBObject whereObj)
+		{
+			return string.Format("WHERE {0}={1}", whereObj.ColumnName, string.Format(ValueTypeDifin[whereObj.ValueType], whereObj.Value));
+		}
+
+
 
 		private Dictionary<DBValueType, string> ColumnTypeDifin = new Dictionary<DBValueType, string>()
 		{

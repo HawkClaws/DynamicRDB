@@ -47,5 +47,15 @@ namespace DynamicRDB.SqlCreator
 		/// <param name="tableName"></param>
 		/// <returns></returns>
 		public string MultiInsert(IEnumerable<IEnumerable<DBObject>> dBObjectsList, string tableName);
+
+
+		/// <summary>
+		/// SelectするSQLを発行します
+		/// </summary>
+		/// <param name="dBObjects"></param>
+		/// <param name="tableName"></param>
+		/// <param name="whereObj"></param>
+		/// <returns></returns>
+		public string SelectSql(IEnumerable<DBObject> dBObjects, string tableName, DBObject whereObj = null);
 	}
 }

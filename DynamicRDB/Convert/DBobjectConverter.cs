@@ -29,7 +29,7 @@ namespace DynamicRDB.Convert
 			foreach (PropertyInfo propertyInfo in properties)
 			{
 				var type = propertyInfo.PropertyType;
-				dBObjectList.Add(new DBObject(propertyInfo.Name, ClassColumnTypeDifin[propertyInfo.PropertyType], propertyInfo.GetValue(valueClass).ToString()));
+				dBObjectList.Add(new DBObject(propertyInfo.Name, ClassColumnTypeDifin[propertyInfo.PropertyType], propertyInfo.GetValue(valueClass)?.ToString()));
 			}
 
 			return dBObjectList;
