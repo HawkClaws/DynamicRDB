@@ -133,7 +133,7 @@ namespace DynamicRDB.SqlCreator
 			{DBValueType.Double ,"double precision"},
 			{DBValueType.String,"text" },
 			{DBValueType.Bool ,"boolean"},
-			{DBValueType.DateTime ,"date"},
+			{DBValueType.DateTime ,"timestamp without time zone"},
 		};
 
 		private Dictionary<DBValueType, string> ValueTypeDifin = new Dictionary<DBValueType, string>()
