@@ -64,10 +64,9 @@ namespace DynamicRDBExample
 			}
 			executer.DynamicMultiInsert(dBObjects, dbName);
 
-			//dataclass
-			var testdata = new ProductData { ProductName = "Magazine", Price = 500, ReleaseDate = DateTime.Now };
-			var dbobjects = new DBobjectConverter().ClassToDBObject(testdata);
-			executer.DynamicInsert(dbobjects, testdata.GetType().Name);
+			//dataclass(便利なRapper)
+			var productData = new ProductData { ProductName = "Magazine", Price = 500, ReleaseDate = DateTime.Now };
+			new CommonRepository(new SQLiteCreator(), new SqliteRepository(new SqliteDBConfig().SQLiteConnection())).Upsert(productData, nameof(ProductData.ProductName));
 		}
 
 		private static JObject ReadJsonFile(string path)
