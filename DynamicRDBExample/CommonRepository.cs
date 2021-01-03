@@ -1,7 +1,6 @@
 ﻿using Dapper;
 using DynamicRDB.Convert;
 using DynamicRDB.SqlCreator;
-using DynamicRDBExample.Repository;
 using DynamicRDBFacade;
 using DynamicRDBFacade.Repository;
 using System.Collections.Generic;

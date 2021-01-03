@@ -1,7 +1,6 @@
 ﻿using DynamicRDB.Convert;
 using DynamicRDB.Model;
 using DynamicRDB.SqlCreator;
-using DynamicRDBExample.Repository;
 using DynamicRDBFacade;
 using DynamicRDBFacade.Repository;
 using Newtonsoft.Json;
