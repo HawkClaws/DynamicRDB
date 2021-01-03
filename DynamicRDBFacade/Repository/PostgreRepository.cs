@@ -5,7 +5,7 @@ using Npgsql;
 using System.Collections.Generic;
 using System.Data;
 
-namespace DynamicRDBExample.Repository
+namespace DynamicRDBFacade.Repository
 {
 	public class PostgreRepository : IDataRepository
 	{
