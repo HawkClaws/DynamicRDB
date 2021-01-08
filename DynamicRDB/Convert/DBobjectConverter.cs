@@ -50,6 +50,7 @@ namespace DynamicRDB.Convert
 
 		private Dictionary<Type, DBValueType> ClassColumnTypeDifin = new Dictionary<Type, DBValueType>()
 		{
+			{typeof(bool) ,DBValueType.Bool},
 			{typeof(char) ,DBValueType.String},
 			{typeof(string) ,DBValueType.String},
 			{typeof(short) ,DBValueType.Integer},
