@@ -38,7 +38,7 @@ namespace DynamicRDBExample
 		{
 			var executer = new DynamicRDBService(this.SqlCreator, this.DataRepository);
 			var dbobjects = new DBobjectConverter().ClassToDBObject(dataClass);
-			dbobjects.Where(p => p.ColumnName == uniqueColmn.ToLower()).First().Unique = true;
+			dbobjects.First(p => p.ColumnName == uniqueColmn.ToLower()).Unique = true;
 			try
 			{
 				executer.DynamicInsert(dbobjects, dataClass.GetType().Name.ToLower());
@@ -46,7 +46,7 @@ namespace DynamicRDBExample
 			catch (DbException ex)
 			{
 				//本当はもっと厳密にチェックしなくては。。。			
-				executer.Update(dbobjects, dataClass.GetType().Name.ToLower(), dbobjects.Where(p => p.Unique == true).FirstOrDefault());
+				executer.Update(dbobjects, dataClass.GetType().Name.ToLower(), dbobjects.FirstOrDefault(p => p.Unique == true));
 			}
 		}
 	}
